@@ -100,3 +100,4 @@ class TwoScreen extends StatelessWidget {
     );
   }
 }
+//회고: gesturedetector를 써서 이미지 클릭시 문구가 프린트되도록 만들었다.
