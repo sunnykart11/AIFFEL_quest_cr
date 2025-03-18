@@ -18,6 +18,8 @@ class _PurposeScreenState extends State<PurposeScreen> {
       params: const YoutubePlayerParams(
         showControls: true,
         showFullscreenButton: true,
+        enableJavaScript: true,
+        playsInline: true,
         mute: false,
         loop: false,
         strictRelatedVideos: true,
@@ -34,78 +36,94 @@ class _PurposeScreenState extends State<PurposeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-                  child: YoutubePlayer(
-                    controller: _controller,
-                    aspectRatio: 16 / 9,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    '강의 영상',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('목적 파악', style: TextStyle(color: Colors.black)),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: SafeArea(
+        child: YoutubePlayerScaffold(
+          controller: _controller,
+          builder: (context, player) {
+            return SingleChildScrollView(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+                          child: player,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            '강의 영상',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 20),
-          Text(
-            '연습문제1',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Text(
-            '밑줄 친 our brain and the universe meet가 다음 글에서 의미하는 바로 가장 적절한 것은?',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Text('Many people take the commonsense view that color is an objective property of things, or of the light that bounces off them. They say a tree’s leaves are green because they reflect green light―a greenness that is just as real as the leaves. Others argue that color doesn’t inhabit the physical world at all but exists only in the eye or mind of the viewer. They maintain that if a tree fell in a forest and no one was there to see it, its leaves would be colorless―and so would everything else. They say there is no such thing as color; there are only the people who see it. Both positions are, in a way, correct. Color is objective and subjective―“the place,” as Paul Cézanne put it, “where our brain and the universe meet.” Color is created when light from the world is registered by the eyes and interpreted by the brain.',
-            style: TextStyle(fontSize: 16,),
-          ),
-          SizedBox(height: 20),
-          Column(
-            children: List.generate(5, (index) {
-              return GestureDetector(
-                onTap: () => _handleAnswerSelection(index),
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 5),
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.black),
+                  SizedBox(height: 20),
+                  Text(
+                    '연습문제1',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  child: Row(
-                    children: [
-                      Text('${index + 1}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      SizedBox(width: 10),
-                      Expanded(child: Text(answerOptions[index], style: TextStyle(fontSize: 16))),
-                    ],
+                  SizedBox(height: 10),
+                  Text(
+                    '밑줄 친 our brain and the universe meet가 다음 글에서 의미하는 바로 가장 적절한 것은?',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                ),
-              );
-            }),
-          ),
-        ],
+                  SizedBox(height: 10),
+                  Text('Many people take the commonsense view that color is an objective property of things, or of the light that bounces off them. They say a tree’s leaves are green because they reflect green light―a greenness that is just as real as the leaves. Others argue that color doesn’t inhabit the physical world at all but exists only in the eye or mind of the viewer. They maintain that if a tree fell in a forest and no one was there to see it, its leaves would be colorless―and so would everything else. They say there is no such thing as color; there are only the people who see it. Both positions are, in a way, correct. Color is objective and subjective―“the place,” as Paul Cézanne put it, “where our brain and the universe meet.” Color is created when light from the world is registered by the eyes and interpreted by the brain.',
+                    style: TextStyle(fontSize: 16,),
+                  ),
+                  SizedBox(height: 20),
+                  Column(
+                    children: List.generate(5, (index) {
+                      return GestureDetector(
+                        onTap: () => _handleAnswerSelection(index),
+                        child: Container(
+                          margin: EdgeInsets.symmetric(vertical: 5),
+                          padding: EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.black),
+                          ),
+                          child: Row(
+                            children: [
+                              Text('${index + 1}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                              SizedBox(width: 10),
+                              Expanded(child: Text(answerOptions[index], style: TextStyle(fontSize: 16))),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
