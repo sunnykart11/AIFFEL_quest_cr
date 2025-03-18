@@ -24,6 +24,9 @@ https://github.com/user-attachments/assets/b0f94e11-897d-40cd-ad46-a47730ed2351
 
 https://github.com/user-attachments/assets/adc93c84-3ca5-4179-9ca9-ed5cb6e99332
 
+<화면 수정 완료>
+![image](https://github.com/user-attachments/assets/272b89aa-cacc-47e6-9f61-c6e96493c18c)
+
 
 1. main_screen.dart - 홈 화면이며, 각 유형 클릭 시, 유형 학습을 할 수 있는 화면으로 전환됩니다. 유형 학습에서 유튜브 강의 영상 시청 가능합니다. (유형별로 별도 파일 작성)
 2. practice_screen.dart - 학년별 모의고사를 푸는 공간입니다. 각 학년 클릭 시, 연도별, 월별 모의고사를 선택하는 화면으로 전환됩니다. (별도 파일 작성)
