@@ -20,11 +20,7 @@
 ## 프로토타이핑(사용 툴: 피그마)
 https://github.com/user-attachments/assets/b0f94e11-897d-40cd-ad46-a47730ed2351
 ## 페이지 구현  
-
-
 https://github.com/user-attachments/assets/dfb0c181-1295-4456-8aa0-f94ebc41172f
-
-
 
 1. main_screen.dart - 홈 화면이며, 각 유형 클릭 시, 유형 학습을 할 수 있는 화면으로 전환됩니다. 유형 학습에서 유튜브 강의 영상 시청 가능합니다. (유형별로 별도 파일 작성)
 2. practice_screen.dart - 학년별 모의고사를 푸는 공간입니다. 각 학년 클릭 시, 연도별, 월별 모의고사를 선택하는 화면으로 전환됩니다. (별도 파일 작성)
